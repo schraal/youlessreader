@@ -1,0 +1,113 @@
+$def with (form, remark, data, kwh, kwhprice)
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Youless verbruiksmeter</title>
+
+<script type="text/javascript" src="static/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+
+$$(function() {
+       // Create the chart
+       window.chart = new Highcharts.StockChart({
+              chart : { renderTo : 'container' },
+              title : { text : 'Energyconsumption $remark' },
+
+              rangeSelector : {
+                     buttons : [{
+                       type: 'minute',
+                       count: 15,
+                       text: '15m'
+                      }, {
+                       type: 'minute',
+                       count: 30,
+                       text: '30m'
+                      }, {
+                       type: 'hour',
+                       count: 1,
+                       text: '1h'
+                      }, {
+                       type: 'hour',
+                       count: 12,
+                       text: '12h'
+                      }, {
+                       type: 'day',
+                       count: 1,
+                       text: '1d'
+                      }, {
+                       type: 'all',
+                       text: 'All'
+                      }],
+		      inputEnabled: false, // it supports only days
+		      selected : 4 // all
+              },
+		yAxis: {
+                	title: {
+	                    text: 'Watt'
+	                },
+	                plotLines: [{
+	                    value: 0,
+	                    width: 1,
+	                    color: '#808080'
+	                }]
+            },
+              series : [{
+                     name : 'Data',
+		     color: '#A19E13',
+                     data : [$data],
+		     step: true,
+                     type : 'area',
+                     tooltip: {valueDecimals: 1},
+                     fillColor : {
+				linearGradient : {x1: 0, y1: 0, x2: 0, 	y2: 1},
+				stops : [[0, '#FF0000'], [1,'#2C6700']]
+			}
+              }]
+       })
+})
+
+</script>
+</head>
+<body>
+
+<script src="static/js/highstock.js"></script>
+<script src="static/js/modules/exporting.js"></script>
+<script src="static/js/jquery-1.11.0.min.js"></script>
+
+
+<div id="container" style="height: 500px; min-width: 500px"></div>
+
+<center>
+<form name="main" method="post">
+<a href="first">First</a>  
+<a href="previous">Previous</a> 
+$:form.Day.render() $:form.Month.render() $:form.Year.render()
+<input type="submit" value='View'>
+<a href="next">Next</a>
+<a href="last">Last</a>
+</br>
+</br>
+Select timeframe: $:form.Timeframe.render()
+</form>
+</br>
+<IMG SRC="static/meter.jpg" ALT="Energy consumption for specified period" HEIGHT=15>
+$kwh kWh   
+<IMG SRC="static/euro.png" ALT="Costs in euro for specified period" HEIGHT=15>
+$kwhprice Eur
+</br>
+
+
+</br>
+<a href="update">Update measurements</a>
+<a href="stop">Stop server</a>
+
+</center>
+</br>
+
+
+</body>
+</html>
+
+
