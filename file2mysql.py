@@ -15,7 +15,7 @@ def store_data_in_MySQL(cur, data):
 
 def read_youless_logfile(logfile_filename):
     # copy logfile first to local dir and remove logfile
-    tempfile = ('%s-$s') % (logfile_filename, datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
+    tempfile = ('%s-%s') % (logfile_filename, datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
     try:
         shutil.copyfile(logfile_filename, tempfile)
     except IOError, e:
