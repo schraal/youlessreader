@@ -187,7 +187,7 @@ if __name__=="__main__":
     print "Using database: %s" %database_name
 
     #get latest readings that were not yet in the MySQL DB
-    updateyouless2mysql()
+    #updateyouless2mysql()
 
     #make webform elements
     myform=make_form()
