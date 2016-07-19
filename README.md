@@ -1,0 +1,1 @@
+nginx config based on: http://webpy.org/cookbook/fastcgi-nginx
