@@ -1,7 +1,7 @@
 server {
 	listen 12345;
 	location / {
-        auth_basic "closed site. ga weg";
+        auth_basic "closed site.";
         auth_basic_user_file conf/htpasswd;
         fastcgi_param REQUEST_METHOD $request_method;
         fastcgi_param QUERY_STRING $query_string;
