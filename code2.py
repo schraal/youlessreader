@@ -184,8 +184,6 @@ class index:
 
 
 if __name__ == "__main__":
-    web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
-
     print "Youless energymonitor."
     print "Version  0.0.1 by Witteveder\n"
 
@@ -214,4 +212,5 @@ if __name__ == "__main__":
     urls = ('/(.*)', 'index')
     app = web.application(urls, globals())
     web.internalerror = web.debugerror
+    web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
     app.run()
