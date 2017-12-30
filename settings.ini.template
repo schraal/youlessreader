@@ -1,0 +1,11 @@
+[SETTINGS]
+logfile_filename=/volume1/youless_logfile.txt
+ipaddress=192.168.178.5
+kwhprice=0.22
+external_server=...
+
+[MYSQL SETTINGS]
+server=localhost
+user=root
+password=password
+database_name=youless_wv

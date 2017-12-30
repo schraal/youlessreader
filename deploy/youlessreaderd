@@ -1,0 +1,31 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          youlessreader
+# Required-Start:
+# Required-Stop:
+# Default-Start:
+# Default-Stop:      6
+# Short-Description: Execute the youlessreader.
+# Description:
+### END INIT INFO
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+. /lib/lsb/init-functions
+
+case "$1" in
+  start)
+	spawn-fcgi -d /opt/youlessreader -f /opt/youlessreader/code2.py -a 127.0.0.1 -p 9002
+	;;
+  restart|reload|force-reload)
+	echo "Error: argument '$1' not supported" >&2
+	exit 3
+	;;
+  stop)
+	kill `pgrep -f "python /opt/youlessreader/code2.py"`
+	;;
+  *)
+	echo "Usage: $0 start|stop" >&2
+	exit 3
+	;;
+esac
