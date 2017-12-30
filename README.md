@@ -95,3 +95,23 @@ Short explanation
 * user=typically root
 * password=yourpasswordhere
 * database_name=name of database, do not choose "youless" if you have also -LA-'s script working
+
+
+External server
+===============
+It is possible to use the Synology to read the data from the Youless and have the user interface running on an 
+external server. To do so the software needs to be installed on the Synology and on the external server.
+
+Synology
+--------
+
+* Make sure you have Python running on the Synology
+* Install the software in ```/volume1/@appstore/youless```.
+* Make a copy of ```settings.ini.template``` to ```settings.ini``` and fill in the values under ```[SETTINGS]```. 
+```external_server``` should have the form of ```user@server:``` (it is used to scp the youless logfile).
+* Add an hourly call to  ```copy_update_to_external_server.sh``` in the Task Scheduler.
+* Make sure the root user has passwordless access to the external server. How to configure that, e.g.: 
+  https://www.howtogeek.com/66776/HOW-TO-REMOTELY-COPY-FILES-OVER-SSH-WITHOUT-ENTERING-YOUR-PASSWORD/
+  
+External server
+---------------
